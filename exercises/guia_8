@@ -143,3 +143,56 @@ def cuenta_posiciones_por_nacion(naciones: list, torneos: dict) -> dict:
         for posicion in range(len(torneos[año])):
             diccionario[torneos[año][posicion]][posicion] += 1 
     return diccionario
+
+def ultima_aparicion(seq:list[int],e:int)->int:
+    res:int=0
+    for i in range(len(seq)):
+        if seq[i] == e :
+            res=i
+    return res
+
+
+def elementos_exclusivos(seq:list[int],t:list[int])->list[int]:
+    res:list[int]=[]
+    for i in seq:
+        if (i not in t) and (i not in res):
+            res.append(i)
+
+    for j in t:
+        if (j not in seq) and (j not in res):
+            res.append(j)
+    return res
+
+
+
+def contar_traducciones_iguales(dict_es_en:dict[str,str],dict_es_de:dict[str,str])->int:
+    acumulador:int=0
+    for value in dict_es_en.values():
+        if value in dict_es_de.values():
+            acumulador+=1
+    return acumulador
+
+def cantidad_apariciones(e:int,seq:list[int])->int:
+    acum:int=0
+    for i in seq:
+        if i == e :
+            acum+=1
+    return acum
+
+def convertir_a_diccionario(seq:list[int])->dict[int,int]:
+    diccionario:dict[int,int]={}
+    for numero in seq:
+        diccionario[numero]=cantidad_apariciones(numero,seq)
+    return diccionario
+
+
+
+
+def mezclar(seq_1:list[int],seq_2:list[int])->list[int]:
+    lista_nueva:list[int]=[]
+    long:int=len(seq_1)
+    for i in range(long):
+        lista_nueva.append(seq_1[i])
+        lista_nueva.append(seq_2[i])
+    return lista_nueva
+        
