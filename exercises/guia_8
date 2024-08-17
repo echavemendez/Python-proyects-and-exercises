@@ -1,0 +1,145 @@
+from queue import LifoQueue as Pila
+import random
+
+
+#Ejercicio 1
+
+def con_lineas(nombre_archivo:str)->int:
+    archivo = open(nombre_archivo, "r")
+    contador:int=0
+    for linea in archivo.readlines():  
+        contador+=1
+    archivo.close()
+    return contador
+
+
+def existe_palabra(palabra:str,nombre_archivo:str)->bool:
+    archivo = open(nombre_archivo,"r")
+    res= False
+    for linea in archivo.readlines():
+        if palabra in linea:
+            res= True
+    archivo.close()
+    return res
+
+
+def cantidad_apariciones(nombre_archivo:str,palabra:str)->int:
+    archivo = open(nombre_archivo,"r")
+    acum:int = 0
+    archivo_lectura= archivo.read()
+    palabras_archivo=archivo_lectura.split()
+    for word in palabras_archivo: 
+            if word == palabra:
+                acum += 1
+    archivo.close()
+    return acum
+
+
+# Ejercicio 2
+def clonar_sin_comentarios(nombre_archivo:str):
+    archivo = open(nombre_archivo)
+    clon_archivo=open("clon_archivo.txt","w")
+    lineas =archivo.readlines()
+    for linea in lineas:
+        if not linea.strip()[0]=="#":
+            clon_archivo.write(linea)
+    archivo.close()
+    clon_archivo.close()
+
+# Ejercicio 4
+def agregar_frase_al_final(nombre_archivo:str,frase:str):
+    archivo=open(nombre_archivo,"a")
+    archivo.wirte(frase)
+    archivo.close()
+
+# Ejericicio 5
+
+def agregar_frase_principio(nombre_archivo:str,frase:str):
+    archivo=open(nombre_archivo,"r+")
+    contenido = archivo.read()
+    archivo.seek(0)
+    archivo.write(frase.rstrip('\r\n') +'\n' + contenido)
+    archivo.close()
+
+
+# Ejercicio 8
+"""def generar_nros_al_azar(cantidad:int,desde:int,hasta:int)->Pila[int]:
+    p=Pila()
+    for i in range(cantidad):
+        p.put(random.randint(desde,hasta))
+    return p
+"""
+
+
+def generar_nros_al_azar(n:int,desde:int,hasta:int)->Pila:
+    p:Pila = Pila()
+    for i in range(0,n):
+        p.put(random.randint(desde,hasta))
+    print(p)
+
+def cantidad_elementos(p:Pila)->int:
+    contenido=[]
+    contador:int=0
+    while not p.empty():
+        contenido.append(p.get())
+        contador+=1
+    for elemento in contenido[::-1]:
+        p.put(elemento)
+    return contador
+ 
+def buscar_el_maximo(p:Pila)->int:
+    maximo = p.get()
+    while not p.empty():
+        nuevo_elemento = p.get()
+        if nuevo_elemento > maximo:
+            maximo=nuevo_elemento
+    return maximo
+
+def acomodar(lista:list[str])->list[str]:
+    lista_acomodada:list[str]=[]
+    for partido in lista:
+        if partido == "UP":
+            lista_acomodada.append(partido)
+    for partido in lista:
+        if partido == "LLA":
+            lista_acomodada.append(partido)
+    return lista_acomodada
+
+
+
+
+
+def pos_umbral(seq:list[int],umbral:int)->int:
+    acum_gente:int=0
+    long:int=len(seq)
+    posicion_umbral:int=-1
+    for i in range(long):
+        if seq[i] > 0  :
+            acum_gente+=seq[i]
+        if acum_gente > umbral and posicion_umbral == -1:
+            posicion_umbral=i
+    return posicion_umbral
+
+def columnas_repetidas(matriz:list[list[int]])->bool:
+    long:int=len(matriz)
+    res:bool=True
+    j:int=0
+    for i in range(long):
+        long_fila:int= len(matriz[i])
+
+        for j in range(int((long_fila/2))):
+            if matriz[i][j] != matriz[i][j+(int(long_fila/2))]:
+                res=False
+            j+=1
+    return res
+
+
+def cuenta_posiciones_por_nacion(naciones: list, torneos: dict) -> dict:
+    diccionario: dict = {}
+    for nacion in naciones:
+        diccionario[nacion] = [0] * len(naciones)
+
+    for año in torneos.keys():
+        for posicion in range(len(torneos[año])):
+            diccionario[torneos[año][posicion]][posicion] += 1 
+    return diccionario
