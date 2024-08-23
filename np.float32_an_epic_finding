@@ -1,4 +1,4 @@
-
+#in this exercise we try to understand the importance of the limiting memory that we assign to a number.
 import numpy as np
 
 n = 7
@@ -7,7 +7,7 @@ for i in range(1,10**n+1):
     s1+=np.float32(mp-float32(1)/np.float32(i))
 
 print("sum1 = ", s1)
-
+#if we dont take in to consideration that really small number cannot be summed with very large ones (in comparisson), we end up with the same result in bpth summatories, when in reality they differ a lot between them. (0.69, which is a lot if we think that the result is 15.7 aprox.)
 s2 = np.float32(0)
 for i in range(2*10**n,0,-1):
     s2+=np.float32(mp-float32(1)/np.float32(i))
@@ -28,3 +28,7 @@ for i in range(10,-1,-1):
     e+=np.float32(np.float32(1)/np.float32(factorial(i)))
 
 print('e aproximation =', e)
+
+
+
+
