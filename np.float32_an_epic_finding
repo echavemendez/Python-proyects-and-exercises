@@ -1,8 +1,4 @@
-1. Se quiere calcular 
-$$\sum_{i=1}^{10^7} \frac{1}{i} \quad y \quad \sum_{i=1}^{2\cdot10^7} \frac{1}{i} $$
-usando aritmética de simple precisión (float32).
 
-Realizar para cada una de las expresiones un script que calcule el resultado. Qué se observa?
 import numpy as np
 
 n = 7
