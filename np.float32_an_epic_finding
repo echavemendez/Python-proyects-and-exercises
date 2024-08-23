@@ -6,11 +6,25 @@ s1 = np.float32(0)
 for i in range(1,10**n+1):
     s1+=np.float32(mp-float32(1)/np.float32(i))
 
-print("suma = ", s1)
+print("sum1 = ", s1)
 
 s2 = np.float32(0)
 for i in range(2*10**n,0,-1):
     s2+=np.float32(mp-float32(1)/np.float32(i))
 
-print("suma = ", s2)
+print("sum2 = ", s2)
 
+print(np.exp(1)) #this is the best aproximation to the actual number
+
+def factorial(n):
+    if n==0:
+        res=1
+    else:
+        res=(n*factorial(n-1))
+
+
+e = np.float32(0)
+for i in range(10,-1,-1):
+    e+=np.float32(np.float32(1)/np.float32(factorial(n)))
+
+print('e aproximation =', s)
