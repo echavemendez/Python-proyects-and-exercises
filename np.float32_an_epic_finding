@@ -25,6 +25,6 @@ def factorial(n):
 
 e = np.float32(0)
 for i in range(10,-1,-1):
-    e+=np.float32(np.float32(1)/np.float32(factorial(n)))
+    e+=np.float32(np.float32(1)/np.float32(factorial(i)))
 
 print('e aproximation =', e)
